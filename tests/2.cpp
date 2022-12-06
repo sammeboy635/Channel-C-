@@ -1,6 +1,7 @@
 #include "../include/channel.hpp"
 #define XDEBUG
-#include "../../xdebug/include/xdebug.hpp"
+#include "include/xdebug.hpp"
+#include <cassert> 
 void TestChannel() {
   Channel<int> channel(10);
   std::thread t1([&channel] {
@@ -12,6 +13,7 @@ void TestChannel() {
     for (int i = 0; i < 100; i++) {
       int element;
       channel >> element;
+      assert(element == i);
       DEBUGT("Element: ",element);
     }
   });
